@@ -2,8 +2,18 @@
 
 CHECKOUTDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-rm -i ~/.vimrc
-rm -ir ~/.vim
+git submodule init
+git submodule update
 
-ln -s ${CHCEKOUTDIR}/.vimrc ~/.vimrc
+if [ -w ~/.vimrc ]
+then
+  rm -i ~/.vimrc
+fi
+
+if [ -d ~/.vim ]
+then
+  rm -ir ~/.vim
+fi
+
+ln -s ${CHECKOUTDIR}/.vimrc ~/.vimrc
 ln -s ${CHECKOUTDIR}/.vim ~/.vim
